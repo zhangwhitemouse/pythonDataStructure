@@ -1,20 +1,20 @@
-# from python_stack import Stack
+from python_stack import Stack
 
-# s = Stack()
+s = Stack()
 
-# s.push(1)
-# s.push(2)
-# s.push(3)
+s.push(1)
+s.push(2)
+s.push(3)
 
-# print(s.isEmpty())
+print(s.isEmpty())
 
-# print(s.size())
+print(s.size())
 
-# print(s.peek())
+print(s.peek())
 
-# print(s.pop())
+print(s.pop())
 
-# print(s.peek())
+print(s.peek())
 
 
 

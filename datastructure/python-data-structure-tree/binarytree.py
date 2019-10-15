@@ -42,7 +42,7 @@ class BinaryTree(object):
                 #左右子树都不为空
                 else:
                     queue.append(cur.lchild)
-                    queue.append(cur.rchild)            #这块卡了我好久，总算是弄明白了
+                    queue.append(cur.rchild)            #这块卡了我好久，总算是弄明白了(使用的是队列不是栈)
 
     def preorder(self):
         "前序遍历（非递归方式实现，使用了栈）"
@@ -58,7 +58,7 @@ class BinaryTree(object):
                 cur = cur.lchild
             #跳转到右子树节点遍历
             if len(stack) != 0:
-                cur = cur[len(stack) - 1]
+                cur = cur.pop(len(stack) - 1)
                 cur = cur.rchild
 
     def preorderrecursion(self):
@@ -68,4 +68,59 @@ class BinaryTree(object):
             print(cur.data)
             self.preorderrecursion(cur.lchild)
             self.preorderrecursion(cur.rchild)
+
+    def midorder(self):
+        "中序遍历（非递归方式）"
+        cur = self.root
+        stack = []
+
+        while cur != None or len(stack):
+            while cur != None:
+                stack.append(cur)
+                cur = cur.lchild
+
+            if len(stack):
+                cur = cur.pop(len(stack) - 1)
+                print(cur.data)
+                cur = cur.rchild
+
+    def migorderrecusion(self):
+        "中序遍历（递归的方式）"
+        cur = self.root
+        if cur != None:
+            self.migorderrecusion(cur.lchild)
+            print(cur.data)
+            self.migorderrecusion(cur.rchild)
+
+    def postorder(self):
+        "后序遍历（非递归）"
+        cur = self.root
+        lastvisit = root
+        stack = []
+
+        while cur != None or len(stack):
+            while cur != None:
+                stack.append(cur)
+                cur = cur.lchild
+            
+            cur = stack[len(stack) - 1]
+            #需要判断当前节点是否具有右节点，没有才能打印
+            if cur.rchild == None or cur.rchild == lastvisit:
+                print(cur.data)
+                stack.pop(len(stack) - 1)
+                lastvisit = cur
+                cur = None
+            else:
+                cur = cur.rchild
+
+
+    def postorderrecursion(self):
+        "后序遍历（递归）"
+        cur = self.root
+        self.postorderrecursion(cur.lchild)
+        self.postorderrecursion(cur.rchild)
+        print(cur.data)
+
+
+
 

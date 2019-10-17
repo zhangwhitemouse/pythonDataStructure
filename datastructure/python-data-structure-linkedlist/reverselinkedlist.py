@@ -5,21 +5,36 @@
     然后想了想发现我用两个变量，一个存储当前节点，一个存放当前节点的前一个节点不就行了
 """
 
-class Solution:
-    def reverseList(self, head):
-        prev = None
-        curr = head
+# class Solution:
+#     def reverseList(self, head):
+#         prev = None
+#         curr = head
 
-        while curr != None:
-            temp = curr.next
-            curr.next = prev
-            prev = curr
-            curr = temp
+#         while curr != None:
+#             temp = curr.next
+#             curr.next = prev
+#             prev = curr
+#             curr = temp
 
-        return prev
+#         return prev
 
 
 """
 还有一种递归的方法，但是由于我递归理解的比较差，暂时脑袋还转不过来
 等我转好了，我再写哦
+时间一分一秒的过去，就这样一直过了一下午，灵光乍现，懂了
 """
+
+
+
+class Solution:
+    def reverseList(self, head):
+        if head == None or head.next == None:
+            return head
+
+        new_linkedlist = self.reverseList(head.next)
+
+        head.next.next = head
+        head.next = None
+
+        return new_linkedlist

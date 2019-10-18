@@ -11,10 +11,10 @@
 #         curr = head
 
 #         while curr != None:
-#             temp = curr.next
-#             curr.next = prev
-#             prev = curr
-#             curr = temp
+#             temp = curr.next          #存储当前节点的下一个节点
+#             curr.next = prev          #将当前节点的指针域指向前一个节点
+#             prev = curr               #移动新链表的头节点
+#             curr = temp               #当前节点往下移动
 
 #         return prev
 

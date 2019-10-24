@@ -38,3 +38,44 @@ class Solution:
         head.next = None
 
         return new_linkedlist
+
+
+"""
+反转链表指定位置到另外位置的元素，之前都是无脑翻，现在要从m到n。
+算法分析：首先我得找到开始的节点，然后从开始的节点进行链表反转，一直反转到结束的位置，然后将整个链表连接起来
+"""
+
+class Solution:
+    def reverseBetween(self, head, m, n):
+        prev = None
+        cur = head
+
+        if not head:
+            return head
+
+        while m > 1:
+            prev = cur
+            cur = cur.next
+            m -= 1
+            n -= 1
+
+        con = prev 
+        tail = cur
+
+        while n:
+            temp = cur.next
+            cur.next = prev
+            prev = cur
+            cur = temp
+            n -= 1
+
+        if con:
+            con.next = prev
+        else:
+            head = prev
+
+        tail.next = cur
+
+        return head
+
+    

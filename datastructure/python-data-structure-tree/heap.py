@@ -17,134 +17,201 @@
     当子节点的索引为j，父节点的索引为 (j-1) // 2
 """
 
-class Array(object):
-    """
-    Achieve an Array by Python list
-    """
-    def __init__(self, size = 32):
-        self._size = size
-        self._items = [None] * size
+# class Array(object):
+#     """
+#     Achieve an Array by Python list
+#     """
+#     def __init__(self, size = 32):
+#         self._size = size
+#         self._items = [None] * size
 
-    def __getitem__(self, index):
-        """
-        Get items
-        :param index: get a value by index
-        :return: value
-        """
-        return self._items[index]
+#     def __getitem__(self, index):
+#         """
+#         Get items
+#         :param index: get a value by index
+#         :return: value
+#         """
+#         return self._items[index]
 
-    def __setitem__(self, index, value):
-        """
-        set item
-        :param index: giving a index you want to teset
-        :param value: the value you want to set
-        :return:
-        """
-        self._items[index] = value
+#     def __setitem__(self, index, value):
+#         """
+#         set item
+#         :param index: giving a index you want to teset
+#         :param value: the value you want to set
+#         :return:
+#         """
+#         self._items[index] = value
 
-    def __len__(self):
-        """
-        :return: the length of array
-        """
-        return self._size
+#     def __len__(self):
+#         """
+#         :return: the length of array
+#         """
+#         return self._size
 
-    def clear(self, value=None):
-        """
-        clear the Array
-        :param value: set all value to None
-        :return: None
-        """
-        for i in range(self._size):
-            self._items[i] = value
+#     def clear(self, value=None):
+#         """
+#         clear the Array
+#         :param value: set all value to None
+#         :return: None
+#         """
+#         for i in range(self._size):
+#             self._items[i] = value
 
-    def __iter__(self):
-        for item in self._items:
-            yield item
+#     def __iter__(self):
+#         for item in self._items:
+#             yield item
 
 
-class MinHeap(object):
-    """
-    Achieve a minimum heap by Array
-    """
+# class MinHeap(object):
+#     """
+#     Achieve a minimum heap by Array
+#     """
 
-    def __init__(self, maxsize = None):
-        self.maxsize = maxsize
-        self._elements = Array(maxsize)
-        self._count = 0
+#     def __init__(self, maxsize = None):
+#         self.maxsize = maxsize
+#         self._elements = Array(maxsize)
+#         self._count = 0
 
-    def __len__(self):
-        return self._count
+#     def __len__(self):
+#         return self._count
 
-    def add(self, value):
-        """
-        Add an element to heap while keeping the attribute of heap unchanged.
-        :param value: the value added to the heap
-        :return: None
-        """
-        if self._count >= self.maxsize:
-            raise Exception("The heap is full!")
-        self._elements[self._count] = value
-        self._count += 1
-        self._siftup(self._count-1)
+#     def add(self, value):
+#         """
+#         Add an element to heap while keeping the attribute of heap unchanged.
+#         :param value: the value added to the heap
+#         :return: None
+#         """
+#         if self._count >= self.maxsize:
+#             raise Exception("The heap is full!")
+#         self._elements[self._count] = value
+#         self._count += 1
+#         self._siftup(self._count-1)
 
-    def _siftup(self, index):
-        """
-        To keep the the attribute of heap unchanged while adding a new value.
-        :param index: the index of value you want to swap
-        :return: None
-        """
-        if index > 0:
-            parent = int((index - 1) / 2)
-            if self._elements[parent] > self._elements[index]:
-                self._elements[parent], self._elements[index] = self._elements[index], self._elements[parent]
-                self._siftup(parent)
+#     def _siftup(self, index):
+#         """
+#         To keep the the attribute of heap unchanged while adding a new value.
+#         :param index: the index of value you want to swap
+#         :return: None
+#         """
+#         if index > 0:
+#             parent = int((index - 1) / 2)
+#             if self._elements[parent] > self._elements[index]:
+#                 self._elements[parent], self._elements[index] = self._elements[index], self._elements[parent]
+#                 self._siftup(parent)
 
-    def extract(self):
-        """
-        pop and return the value of root
-        :return: the value of root
-        """
-        if self._count <= 0:
-            raise Exception('The heap is empty!')
-        value = self._elements[0]
-        self._count -= 1
-        self._elements[0] = self._elements[self._count]
-        self._siftdown(0)
+#     def extract(self):
+#         """
+#         pop and return the value of root
+#         :return: the value of root
+#         """
+#         if self._count <= 0:
+#             raise Exception('The heap is empty!')
+#         value = self._elements[0]
+#         self._count -= 1
+#         self._elements[0] = self._elements[self._count]
+#         self._siftdown(0)
+#         return value
+
+#     def _siftdown(self, index):
+#         """
+#         to keep the attribute of heap unchanged while pop out the root node.
+#         :param index: the index of value you want to swap
+#         :return: None
+#         """
+#         if index < self._count:
+#             left = 2 * index + 1
+#             right = 2 * index + 2
+#             if left < self._count and right < self._count \
+#                 and self._elements[left] <= self._elements[right] \
+#                 and self._elements[left] <= self._elements[index]:
+#                 self._elements[left], self._elements[index] = self._elements[index], self._elements[left]
+#                 self._siftdown(left)
+#             elif left < self._count and right < self._count \
+#                 and self._elements[left] >= self._elements[right] \
+#                 and self._elements[right] <= self._elements[index]:
+#                 self._elements[right], self._elements[index] = self._elements[index], self._elements[right]
+#                 self._siftdown(left)
+
+#             if left < self._count and right > self._count \
+#                 and self._elements[left] <= self._elements[index]:
+#                 self._elements[left], self._elements[index] = self._elements[index], self._elements[left]
+#                 self._siftdown(left)
+
+# if __name__ == '__main__':
+#     import random
+#     n = 5
+#     h = MinHeap(n)
+#     for i in range(n):
+#         h.add(i)
+#     for i in range(n):
+#         assert i == h.extract()
+
+
+
+class MaxHeap(object):
+    "初始化"
+    def __init__(self):
+        self.heap = []
+
+    def size(self):
+        return len(self.heap)
+
+    def father(self,node):
+        "求当前节点的父节点"
+        return (node - 1) // 2
+
+    def left_node(self,root):
+        "求当前节点的左子节点"
+        return root * 2 + 1
+
+    def right_node(self,root):
+        "求当前节点的右子节点"
+        return root * 2 + 2
+
+    def add(self,data):
+        "建堆"
+        self.heap.append(data)
+        self.siftup(self.size - 1)
+
+    def siftup(self,node):
+        "加入节点后，保持最大堆的性质"
+        fnode = self.father(node)   #父节点
+        if node > 0 and self.heap[node] > self.heap[fnode]: #当前节点大于父节点值，则交换
+            temp = self.heap[node]
+            self.heap[node] = self.heap[fnode]
+            self.heap[fnode] = temp
+            self.siftup(fnode)                          #一直递归到树的第一个元素（数组的第二个）
+
+    def getmax(self):
+        "获得堆顶元素"
+        value = self.heap[0]
+        self.heap[0] = self.heap[self.size - 1]
+        self.heap.pop()
+        self.siftdown(0)
         return value
 
-    def _siftdown(self, index):
-        """
-        to keep the attribute of heap unchanged while pop out the root node.
-        :param index: the index of value you want to swap
-        :return: None
-        """
-        if index < self._count:
-            left = 2 * index + 1
-            right = 2 * index + 2
-            if left < self._count and right < self._count \
-                and self._elements[left] <= self._elements[right] \
-                and self._elements[left] <= self._elements[index]:
-                self._elements[left], self._elements[index] = self._elements[index], self._elements[left]
-                self._siftdown(left)
-            elif left < self._count and right < self._count \
-                and self._elements[left] >= self._elements[right] \
-                and self._elements[right] <= self._elements[index]:
-                self._elements[right], self._elements[index] = self._elements[index], self._elements[right]
-                self._siftdown(left)
+    def siftdown(self,root):
+        "获得堆顶元素后，保持最大堆的性质"
+        if root < self.size -1:
+            lchild = self.left_node(root)
+            rchild = self.right_node(root)
+            maxnode = root
 
-            if left < self._count and right > self._count \
-                and self._elements[left] <= self._elements[index]:
-                self._elements[left], self._elements[index] = self._elements[index], self._elements[left]
-                self._siftdown(left)
+            if lchild < self.size -1 and self.heap[maxnode] < self.heap[lchild]:
+                maxnode = lchild
 
-if __name__ == '__main__':
-    import random
-    n = 5
-    h = MinHeap(n)
-    for i in range(n):
-        h.add(i)
-    for i in range(n):
-        assert i == h.extract()
+            if rchild < self.size -1 and self.heap[maxnode] < self.heap[rchild]:
+                maxnode = rchild
+
+            if maxnode != root:
+                temp = self.heap[maxnode]
+                self.heap[maxnode] = self.heap[root]
+                self.heap[root] = temp
+                self.siftdown(maxnode)
+
+                
 
 
 
+
+    

@@ -6,30 +6,32 @@
     然后对基准值左右两边的子序列进行快速排序（递归）
 """
 
-def quick_sort(L,start,end):
-    if start >= end:
+def quick_sort(arr,start,end):
+    #特殊情况和边界情况判断
+    if not arr or start > end:
         return
 
     left = start
     right = end
-    pivot = L[left]
+    pivot = arr[left]
 
-    while left != right:
-        while left < right and L[right] >= pivot:
-            right -= 1
-        L[left] = L[right]
+    #只要左指针小于右指针
+    while start < end:
 
-        while left < right and L[left] < pivot:
-            left += 1
-        L[right] = L[left]
+        while start < end and arr[end] > pivot:
+            end -= 1
+        arr[start] = arr[end]
 
-    L[left] = pivot
-    quick_sort(L,start,left - 1)
-    quick_sort(L,right + 1,end)
+        while start < end and arr[start] <= pivot:
+            start += 1
+        arr[end] = arr[start]
 
+        arr[start] = pivot
 
-larray = [9,1,2,5,7,4,8,6,3,5]
+        quick_sort(arr,left,start - 1)
+        quick_sort(arr,start + 1,right)
 
-quick_sort(larray,0,9)
+arr = [3,1,2,5,4]
 
-print(larray)
+quick_sort(arr,0,len(arr) - 1)
+print(arr)

@@ -6,45 +6,41 @@
     有序。
 """
 
-def mergesort(L):
-    if len(L) <= 1:
-        return L
+def mergesort(arr):
 
-    mid = len(L) // 2
+    if len(arr) <= 1:
+        return arr
 
-    left = mergesort(L[:mid])
-    right = mergesort(L[mid:])
-    return merge(left,right)
+    mid = len(arr) // 2
 
-def merge(left,right):
-    temp = []
+    left_arr = mergesort(arr[:mid])
+    right_arr = mergesort(arr[mid:])
 
+    return merge(left_arr,right_arr)
+
+def merge(left_arr,right_arr):
+
+    res = []
     i = 0
     j = 0
 
-    while i < len(left) and j < len(right):
+    while i < len(left_arr) and j < len(right_arr):
 
-        if left[i] < right[j]:
-            temp.append(left[i])
+        if left_arr[i] < right_arr[j]:
+            res.append(left_arr[i])
             i += 1
-
         else:
-            temp.append(right[j])
+            res.append(right_arr[j])
             j += 1
 
-    
-    if i == len(left):
-        for j in right[j:]:
-            temp.append(j)
+    res += left_arr[i:]
+    res += right_arr[j:]
 
-    else:
-        for i in left[i:]:
-            temp.append(i)
+    return res
 
-    return temp
+arr = [2,3,1,7,2,0]
+print(mergesort(arr))
 
-larray = [9,1,2,5,7,4,8,6,3,5]
 
-larray = mergesort(larray)
 
-print(larray)
+

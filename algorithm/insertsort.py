@@ -11,21 +11,21 @@
 
 """
 
-def insert_sort(L):
+def insert_sort(arr):
+      if not arr:
+          return
 
-    for x in range(1,len(L)):           #从1开始是因为默认数组的第一个元素已经排好序了
-         for i in range(x-1,-1,-1):     #第一个参数是起始位置，第二个是代表逆序，第三个代表步长
-            if L[i] > L[i+1]:
-                temp = L[i+1]
-                L[i+1] = L[i]
-                L[i] = temp
+      #假定第一个数已经有序了
+      for  i in range(1,len(arr)):
+          for j in range(i,0,-1):#从有序数组的最后一个数，往前比
+              if arr[j] < arr[j-1]:
+                  arr[j-1],arr[j] = arr[j],arr[j-1]
+              else:
+                  break
+      return  arr
 
-            
+arr = [9,1,2,5,7,4,8,6,3,5]
 
-larray = [9,1,2,5,7,4,8,6,3,5]
+insert_sort(arr)
 
-insert_sort(larray)
-
-print(larray)
-
-            
+print(arr)

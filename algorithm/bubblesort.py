@@ -5,17 +5,24 @@
     然后对剩下的n-1个元素进行比较
 """
 
-def bubble_sort(L):
-    size = len(L)
+def bubble_sort(arr):
+    if not arr:
+        return
+    #5个数，只需要比较4次
+    for i in range(len(arr) -1):
+        #设置标志位，一旦没有元素发生位置变化，说明已经有序，停止比较
+        flag = False
+        #比较过i次后，最后的i个数已经有序,所以无需比较
+        for j in range(len(arr) - 1 - i):
+            if arr[j] > arr[j+1]:
+                temp = arr[j+1]
+                arr[j+1] = arr[j]
+                arr[j] = temp
+                flag = True
+        if not flag:
+            break
+    return arr
 
-    for x in range(1,size):             #表示第几轮循环，一共n-1轮
-        for i in range(0,size - x):     #每轮从0到未排序的结束
-            if L[i] > L[i + 1]:
-                temp = L[i]
-                L[i] = L[i + 1]
-                L[i + 1] = temp
+arr = [9,1,2,5,7,4,8,6,3,5]
 
-larray = [9,1,2,5,7,4,8,6,3,5]
-bubble_sort(larray)
-
-print(larray)     
+print(bubble_sort(arr))

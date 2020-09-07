@@ -1,49 +1,25 @@
 #问题描述：使用栈来生成队列
 """
 算法思想：
-    利用一个临时栈，首先判断队列栈中是否有元素，没有，直接添加在队列栈中；
-    有就将所有队列栈中的元素，全部通过pop的形式，压入到临时栈中，然后再将要push的
-    元素先push到临时栈中，最后将所有临时栈中的元素通过pop的形式push到队列栈中。
+题目只要求实现 加入队尾appendTail() 和 删除队首deleteHead()
+两个函数的正常工作，因此我们可以设计栈 A 用于加入队尾操作，栈 B 用于将元素倒序，从而实现删除队首元素。
+
 """
-from python_stack import Stack
-class MyQueue:
+class CQueue:
 
     def __init__(self):
-        """
-        Initialize your data structure here.
-        """
-        
-        self.tmp = Stack()
-        self.queue = Stack()
-        
+        self.A,self.B = [],[]
 
-    def push(self, x: int) -> None:
-        """
-        Push element x to the back of queue.
-        """
-        if self.queue.isempty():
-            self.queue.push(x)
-        else:
-            while not self.queue.isempty():
-                self.tmp.push(self.queue.pop())
-            self.tmp.push(x)
-            while not self.tmp.isempty():
-                self.queue.push(self.tmp.pop())
+    def appendTail(self, value: int) -> None:
+        self.A.append(value)
 
-    def pop(self) -> int:
-        """
-        Removes the element from in front of queue and returns that element.
-        """
-        return self.queue.pop()
+    def deleteHead(self) -> int:
+        if not self.A:
+            return -1
+        if self.B:
+            return self.B.pop()
+        while self.A:
+            self.B.append(self.A.pop())
 
-    def peek(self) -> int:
-        """
-        Get the front element.
-        """
-        return self.queue.peek()
+        return self.B.pop()
 
-    def empty(self) -> bool:
-        """
-        Returns whether the queue is empty.
-        """
-        return self.queue.isempty()

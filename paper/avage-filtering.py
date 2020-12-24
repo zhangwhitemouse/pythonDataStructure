@@ -3,8 +3,8 @@ import cv2
 import glob
 from matplotlib import pyplot as plt
 
-img = cv2.imread(r'gray_noise.png', 0)
-cv2.imshow('img', img)
+img = cv2.imread(r'source2.png', 0)
+# cv2.imshow('img', img)
 img_copy = img.copy()
 width = img.shape[0]  # 宽
 length = img.shape[1]  # 高
@@ -29,7 +29,7 @@ for i in range(width):
         del slide_window[:]
 
 # print('okok---------')
-cv2.imwrite('avage.png',img_copy)
+cv2.imwrite('avage2.png',img_copy)
 cv2.imshow('img_after', img_copy)
 # print(img_copy.shape)
 cv2.waitKey(0)

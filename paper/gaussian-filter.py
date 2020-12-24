@@ -33,11 +33,11 @@ def gaussian_filter(img, K_size=3, sigma=1.3):
     return out
 
 # Read image
-img = cv2.imread("gray_noise.png")
+img = cv2.imread("source2.png")
 # Gaussian Filter
 out = gaussian_filter(img, K_size=3, sigma=1.3)
 # Save result
-cv2.imwrite("gaussian.jpg", out)
+cv2.imwrite("gaussian2.jpg", out)
 cv2.imshow("result", out)
 cv2.waitKey(0)
 cv2.destroyAllWindows()

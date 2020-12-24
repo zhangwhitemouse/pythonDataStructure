@@ -3,24 +3,6 @@
 # 中值滤波#
 import cv2
 import numpy as np
-from PIL import Image
-
-
-def AddNoise(src, dst, probility=0.05, method="salt_pepper"):
-    imarray = np.array(Image.open(src))
-    height = imarray.shape[0]
-    width = imarray.shape[1]
-
-    for i in range(height):
-        for j in range(width):
-            if np.random.random(1) < probility:
-                if np.random.random(1) < 0.5:
-                    imarray[i, j] = 0
-                else:
-                    imarray[i, j] = 255
-    new_im = Image.fromarray(imarray)
-    new_im.save(dst)
-
 
 def MedianFilter(img,k=3,padding=None):
     imarray=img
@@ -38,14 +20,10 @@ def MedianFilter(img,k=3,padding=None):
     return new_arr
 
 
-
-# src = "E:\pycharm\pythonDataStructure\paper\gray.png"
-# dst = "E:\pycharm\pythonDataStructure\paper\gray_noise.png"
-# AddNoise(src,dst)
-img = cv2.imread("gray_noise.png", 0)
+img = cv2.imread("source2.png", 0)
 result = MedianFilter(img)
-cv2.imwrite('middle.jpg', result)
-cv2.imshow("input", img)
+cv2.imwrite('middle2.jpg', result)
+# cv2.imshow("input", img)
 cv2.imshow("output", result)
 cv2.waitKey(0)
 cv2.destroyAllWindows()

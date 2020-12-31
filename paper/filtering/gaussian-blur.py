@@ -39,10 +39,10 @@ def gauss_blur(img, ksize, sigma):
 img = cv2.imread('gray2.png')
 resultImg = gauss_blur(img, (3, 3), 0)
 cv2.imshow('111',resultImg)
-cv2.imwrite('source_temp.png',resultImg)
+cv2.imwrite('source_temp.png', resultImg)
 
-src = "E:\pycharm\pythonDataStructure\paper\source_temp.png"
-dst = "E:\pycharm\pythonDataStructure\paper\source2.png"
+src = "/paper/source_temp.png"
+dst = "/paper/source2.png"
 AddNoise(src,dst)
 cv2.waitKey(0)
 cv2.destroyAllWindows()

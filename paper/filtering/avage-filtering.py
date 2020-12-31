@@ -29,7 +29,7 @@ for i in range(width):
         del slide_window[:]
 
 # print('okok---------')
-cv2.imwrite('avage2.png',img_copy)
+cv2.imwrite('avage2.png', img_copy)
 cv2.imshow('img_after', img_copy)
 # print(img_copy.shape)
 cv2.waitKey(0)

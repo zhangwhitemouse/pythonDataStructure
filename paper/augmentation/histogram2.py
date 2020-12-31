@@ -42,7 +42,7 @@ def plot_img_and_hist(image, axes, bins=256):
 
 
 # Load an example image
-img = cv2.imread('gray.png')
+img = cv2.imread('../filtering/gray.png')
 
 # Contrast stretching
 p2, p98 = np.percentile(img, (2, 98))

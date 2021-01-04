@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-img = cv2.imread("E:\Masters\pic\\railpic2\IMG_4566.JPG", 0)
+img = cv2.imread("E:\Masters\pic\paper\\track.jpg", 0)
 x = cv2.Sobel(img,cv2.CV_16S,1,0)  #1,0代表只计算x方向计算边缘
 y = cv2.Sobel(img,cv2.CV_16S,0,1)  #0,1代表只在y方向计算边缘
 absX = cv2.convertScaleAbs(x)

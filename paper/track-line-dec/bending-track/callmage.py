@@ -7,7 +7,6 @@ Created on Sun Oct  8 00:23:19 2017
 
 import numpy as np
 import cv2
-import matplotlib.pyplot as plt
 
 
 # function take the chess board image and return the object points and image points

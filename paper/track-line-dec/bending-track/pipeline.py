@@ -5,14 +5,12 @@ Created on Sun Oct  8 21:49:26 2017
 @author: zander
 """
 
-import os
 import cv2
 import utils
+
 import matplotlib.pyplot as plt
 import numpy as np
-from moviepy.editor import VideoFileClip
 import line
-import tensorflow as tf
 from PIL import Image
 import time
 
@@ -115,10 +113,12 @@ for img in undistorted:
 # plt.figure(0)
 plt.figure(0)
 plt.imshow(result[0])
+plt.imsave("bend_res.png",result[0])
 plt.figure(1)
 img1 = t2[0]
 #cv2.line(img1, (0,0), (992,345), color=(255, 0, 0), thickness=4)
-#plt.imshow(img1)
+plt.imshow(img1)
+plt.imsave("bend_hough.png",img1)
 #print(img1[345,900])
 print(result[0].shape)
 # plt.figure(1)

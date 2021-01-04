@@ -12,7 +12,7 @@ rho = 1#rho的步长，即直线到图像原点(0,0)点的距离
 theta = np.pi / 180#theta的范围
 threshold = 15#累加器中的值高于它时才认为是一条直线
 min_line_length = 130#线的最短长度，比这个短的都被忽略
-max_line_gap = 4#两条直线之间的最大间隔，小于此值，认为是一条直线
+max_line_gap = 20#两条直线之间的最大间隔，小于此值，认为是一条直线
 
 def roi_mask(img, vertices):#img是输入的图像，verticess是兴趣区的四个点的坐标（三维的数组）
   mask = np.zeros_like(img)#生成与输入图像相同大小的图像，并使用0填充,图像为黑色
@@ -119,8 +119,9 @@ def process_an_image(img):
   # cv2.imshow("roi_edges", roi_edges)
   line_img = hough_lines(roi_edges, rho, theta, threshold, min_line_length, max_line_gap)#使用霍夫直线检测，并且绘制直线
   # cv2.imwrite("line2.png",line_img)
-  # cv2.namedWindow("edges", 0)
-  # cv2.imshow("edges", line_img)
+  cv2.namedWindow("edges", 0)
+  cv2.resizeWindow("edges",1200,800)
+  cv2.imshow("edges", line_img)
   res_img = cv2.addWeighted(img, 0.8, line_img, 1, 0)#将处理后的图像与原图做融合
   #cv2.namedWindow("res_img", 0)
   #cv2.imshow("res_img", res_img)
@@ -132,7 +133,7 @@ img = mplimg.imread("E:\Masters\pic\paper\\track.jpg")
 print("start to process the image....")
 res_img=process_an_image(img)
 print("show you the image....")
-plt.imsave("track2.png",res_img)
+# plt.imsave("track2.png",res_img)
 plt.imshow(res_img)
 cv2.waitKey (0)
 plt.show()

@@ -8,8 +8,7 @@ Created on Fri Oct  6 23:37:10 2017
 import numpy as np
 import os
 import cv2
-import matplotlib.pyplot as plt
-import matplotlib.image as mpimg
+
 
 
 # get all image in the given directory persume that this directory only contain image files
